@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as playwright from '@playwright/test';
 import { FullConfig } from '@playwright/test';
-import { home, signUp, homeForYou } from './pages'
+import { home, signUp, homeForYou } from './pages';
 
 async function globalSetup(config: FullConfig) {
 	const name = config.projects[0].name as 'chromium' | 'firefox' | 'webkit';

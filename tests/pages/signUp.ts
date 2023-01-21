@@ -36,7 +36,7 @@ async function clickOnSignUpButton(page: Page) {
 export async function registerWithEmail(page: Page, email: string, password: string) {
 	await typeOnEmailInputField(page, email);
 	await clickOnContinueButton(page);
-	await expectWouldYouLikeMessageToBeDisplayed(page, email)
+	await expectWouldYouLikeMessageToBeDisplayed(page, email);
 	await typeOnPasswordInputField(page, password);
 	await Promise.all([
 		page.waitForNavigation(), //
