@@ -2,7 +2,7 @@ import { Page, expect } from '@playwright/test';
 import { ROUTES } from '../util';
 
 const selectors = {
-	signUpButton: '//span[text()=\'Sign up\']'
+	signUpButton: '//span[text()="Sign up"]'
 } as const;
 
 export async function goHere(page: Page) {
