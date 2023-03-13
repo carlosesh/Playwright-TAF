@@ -1,7 +1,6 @@
 export const ROUTES = {
 	home: {
 		root: '/',
-		forYou: '/home/for-you',
-		categories: '/categories'
+		login: '/auth/login'
 	},
 } as const;

@@ -12,7 +12,6 @@ module.exports = {
 		semi: ['error', 'always'],
 		indent: ['error', 'tab', { 'SwitchCase': 1 }],
 		'eol-last': ['error', 'always'],
-
 		'no-multiple-empty-lines': [2, { 'max': 1, 'maxEOF': 1 }],
 		'array-bracket-spacing': ['error', 'never'],
 		'brace-style': ['error', '1tbs', { allowSingleLine: true }],
@@ -32,5 +31,6 @@ module.exports = {
 		'require-atomic-updates': 0,
 		'no-unexpected-multiline': 0,
 	},
+	ignorePatterns: ['allure-**/*', 'playwright-report/*', 'test-results/*', 'node_modules/*'],
 	root: true,
 };
