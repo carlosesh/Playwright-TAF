@@ -4,17 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.29.2",
-    "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.48.2",
-    "eslint": "^8.32.0",
-    "eslint-import-resolver-typescript": "^3.5.3",
+    "@playwright/test": "^1.33.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
+    "allure-commandline": "^2.22.0",
+    "allure-playwright": "^2.2.1",
+    "eslint": "^8.40.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-import": "^2.27.5",
-    "typescript": "^4.9.4"
+    "typescript": "^5.0.4"
   },
   "scripts": {
     "test": "yarn run playwright test",
     "lint": "yarn eslint .",
-    "lint:fix": "yarn eslint . --fix"
+    "lint:fix": "yarn eslint . --fix",
+    "allure:report": "allure generate ./allure-results -o allure-report --clean",
+    "allure:serve": "allure serve"
   }
 }

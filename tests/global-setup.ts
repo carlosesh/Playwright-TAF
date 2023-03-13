@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as playwright from '@playwright/test';
+import { signIn, alerts, sideBar, home } from './pages/index';
 import { FullConfig } from '@playwright/test';
-import { home, signUp, homeForYou } from './pages';
 
 async function globalSetup(config: FullConfig) {
-	const name = config.projects[0].name as 'chromium' | 'firefox' | 'webkit';
+	const name = config.projects[0].name as 'firefox';
 	const { baseURL, storageState } = config.projects[0].use;
 
 	if (!storageState || !baseURL) {
@@ -13,19 +13,21 @@ async function globalSetup(config: FullConfig) {
 
 	const browser = await playwright[name].launch();
 	const page = await browser.newPage({ baseURL });
-	const email = `${new Date().getTime()}-ltk-tester@gc.io`;
-	process.env.EMAIL = email;
-	await home.goHere(page);
-	await home.expectToBeHere(page);
-	await home.clickSignUpButton(page);
-	await signUp.expectSignUpHeaderToBeVisible(page);
-	await signUp.registerWithEmail(page, email, 'testEmail123_0');
-	await homeForYou.goHere(page);
-	await homeForYou.expectToBeHere(page);
 
 	if (fs.existsSync(storageState as string)) {
 		await fs.promises.unlink(storageState as string);
 	}
+
+	await signIn.goHere(page);
+	await signIn.expectToBeHere(page);
+	await signIn.signInWithCredentials(page, process.env.USERNAME, process.env.PASSWORD);
+	await home.expectToBeHere(page);
+	await alerts.expectModalToBeVisible(page);
+	await alerts.dismissModalRecursively(page);
+	await sideBar.clearConversationsIfAny(page, process.env.USERNAME);
+	await sideBar.expectConversationListCountToBe(page, 0);
+	await home.expectChatGptHeaderToBeVisible(page);
+	await home.expectExamplesCapabilitiesAndLimitationsToBeVisible(page);
 
 	await page.context().storageState({ path: storageState as string });
 
