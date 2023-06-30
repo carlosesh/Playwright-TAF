@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as playwright from '@playwright/test';
-import { signIn, alerts, sideBar, home } from './pages/index';
+import { home } from './pages/index';
 import { FullConfig } from '@playwright/test';
 
 async function globalSetup(config: FullConfig) {
@@ -18,16 +18,7 @@ async function globalSetup(config: FullConfig) {
 		await fs.promises.unlink(storageState as string);
 	}
 
-	await signIn.goHere(page);
-	await signIn.expectToBeHere(page);
-	await signIn.signInWithCredentials(page, process.env.USERNAME, process.env.PASSWORD);
-	await home.expectToBeHere(page);
-	await alerts.expectModalToBeVisible(page);
-	await alerts.dismissModalRecursively(page);
-	await sideBar.clearConversationsIfAny(page, process.env.USERNAME);
-	await sideBar.expectConversationListCountToBe(page, 0);
-	await home.expectChatGptHeaderToBeVisible(page);
-	await home.expectExamplesCapabilitiesAndLimitationsToBeVisible(page);
+	await home.goHere(page);
 
 	await page.context().storageState({ path: storageState as string });
 

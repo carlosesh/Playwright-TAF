@@ -15,7 +15,8 @@ export async function goHere(page: Page) {
 	await Promise.all([
 		page.waitForURL(ROUTES.home.root), //
 		page.goto(ROUTES.home.root), //
-		page.waitForLoadState('domcontentloaded')
+		page.waitForLoadState('domcontentloaded'),
+		page.waitForLoadState('load')
 	]);
 }
 

@@ -1,7 +1,7 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 
-const baseURL='https://chat.openai.com/';
+const baseURL='https://www.microsoft.com/';
 const config: PlaywrightTestConfig = {
 	testDir: './tests',
 	/* Maximum time one test can run for. */
